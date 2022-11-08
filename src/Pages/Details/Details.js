@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Details = () => {
   const { user } = useContext(AuthContext);
   const { email, displayName, photoURL } = user;
-  console.log(user);
   const service = useLoaderData();
   const { details, picture, price, title } = service;
+  const [reviews, setReviews] = useState([]);
+  const [render, setRender] = useState(true);
 
   const handleReview = (event) => {
     event.preventDefault();
@@ -19,8 +20,27 @@ const Details = () => {
       displayName,
       photoURL,
     };
+    console.log(reviewInfo);
+    fetch("http://localhost:5000/review", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(reviewInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => setRender(!render))
+      .catch((error) => console.log(error));
   };
 
+  useEffect(() => {
+    fetch(`http://localhost:5000/reviews/?name=${title}`)
+      .then((res) => res.json())
+      .then((data) => setReviews(data))
+      .catch((error) => console.log(error));
+  }, [render]);
+
+  console.log(reviews);
   return (
     <div>
       <div className="p-5 mx-auto sm:p-10 md:p-16  dark:text-gray-100">
@@ -85,37 +105,34 @@ const Details = () => {
               <Link to="/login">Please Login</Link>
             )}
           </div>
-          <div className="max-w-md p-6 overflow-hidden rounded-lg shadow dark:bg-gray-900 dark:text-gray-100">
-            <article>
-              <h2 className="text-xl font-bold">
-                Sed diam massa, semper a condimentum
-              </h2>
-              <p className="mt-4 dark:text-gray-400">
-                Morbi porttitor mi in diam scelerisque commodo. Proin sed
-                laoreet libero. Fusce faucibus porttitor lacus, at blandit
-                mauris blandit eget. Donec facilisis lorem et risus commodo,
-                quis auctor nulla varius. Pellentesque facilisis feugiat turpis,
-                id molestie augue semper quis. Nunc ornare eget est sit amet
-                elementum.
-              </p>
-              <div className="flex items-center mt-8 space-x-4">
-                <img
-                  src="https://source.unsplash.com/100x100/?portrait"
-                  alt=""
-                  className="w-10 h-10 rounded-full dark:bg-gray-500"
-                />
-                <div>
-                  <h3 className="text-sm font-medium">Leroy Jenkins</h3>
-                  <time
-                    dateTime="2021-02-18"
-                    className="text-sm dark:text-gray-400"
-                  >
-                    Feb 18th 2021
-                  </time>
-                </div>
+          {reviews?.map((review) => (
+            <div>
+              <div className="max-w-md p-6 overflow-hidden rounded-lg shadow dark:bg-gray-900 dark:text-gray-100">
+                <article>
+                  <h2 className="text-xl font-bold">{review?.title}</h2>
+                  <p className="mt-4 dark:text-gray-400">{review?.review}</p>
+                  <div className="flex items-center mt-8 space-x-4">
+                    <img
+                      src={review?.photoURL}
+                      alt=""
+                      className="w-10 h-10 rounded-full dark:bg-gray-500"
+                    />
+                    <div>
+                      <h3 className="text-sm font-medium">
+                        {review?.displayName}
+                      </h3>
+                      <time
+                        dateTime="2021-02-18"
+                        className="text-sm dark:text-gray-400"
+                      >
+                        Feb 18th 2021
+                      </time>
+                    </div>
+                  </div>
+                </article>
               </div>
-            </article>
-          </div>
+            </div>
+          ))}
         </section>
       </div>
     </div>
