@@ -1,10 +1,25 @@
-import React from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const MyReview = () => {
-  const reviews = useLoaderData();
+  const [reviews, setReviews] = useState([]);
+  const [render, setRender] = useState(true);
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/myreviews/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setReviews(data))
+      .catch((error) => console.log(error));
+  }, [user?.email, render]);
+
   const handleDelete = (id) => {
-    console.log(id);
+    fetch(`http://localhost:5000/reviewdelete/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => setRender((render) => !render))
+      .catch((error) => console.log(error));
   };
   return (
     <div>
