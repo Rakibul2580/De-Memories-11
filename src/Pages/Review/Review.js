@@ -11,15 +11,17 @@ const Review = () => {
     event.preventDefault();
     const review = event.target.review.value;
     const title = service.title;
-    const reviewEmail = user?.email;
-    const reviewName = user?.displayName;
-    const reviewPhoto = user?.photoURL;
+    const serviceImg = service.picture;
+    const userEmail = user?.email;
+    const userName = user?.displayName;
+    const userPhoto = user?.photoURL;
     const reviewInfo = {
+      serviceImg,
       review,
       title,
-      reviewEmail,
-      reviewName,
-      reviewPhoto,
+      userEmail,
+      userName,
+      userPhoto,
     };
     fetch("http://localhost:5000/review", {
       method: "POST",
