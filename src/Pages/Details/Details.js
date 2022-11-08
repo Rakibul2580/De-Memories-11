@@ -4,42 +4,16 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Details = () => {
   const { user } = useContext(AuthContext);
-  const { email, displayName, photoURL } = user;
   const service = useLoaderData();
-  const { details, picture, price, title } = service;
+  const { details, picture, price, title, _id } = service;
   const [reviews, setReviews] = useState([]);
-  const [render, setRender] = useState(true);
-
-  const handleReview = (event) => {
-    event.preventDefault();
-    const review = event.target.review.value;
-    const reviewInfo = {
-      review,
-      title,
-      email,
-      displayName,
-      photoURL,
-    };
-    console.log(reviewInfo);
-    fetch("http://localhost:5000/review", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(reviewInfo),
-    })
-      .then((res) => res.json())
-      .then((data) => setRender(!render))
-      .catch((error) => console.log(error));
-  };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/?name=${title}`)
+    fetch(`http://localhost:5000/reviews/${title}`)
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((error) => console.log(error));
-  }, [render]);
-
+  }, []);
   console.log(reviews);
   return (
     <div>
@@ -69,37 +43,7 @@ const Details = () => {
           <div className="container mx-auto p-4 my-6 space-y-2 text-center">
             {user?.email ? (
               <>
-                <section className="p-6 dark:text-gray-100">
-                  <form
-                    onSubmit={handleReview}
-                    noValidate=""
-                    className="container w-full max-w-xl p-8 mx-auto space-y-6 rounded-md shadow dark:bg-gray-900 ng-untouched ng-pristine ng-valid"
-                  >
-                    <h2 className="w-full text-3xl font-bold leading-tight">
-                      Contact us
-                    </h2>
-                    <div>
-                      <label htmlFor="message" className="block mb-1 ml-1">
-                        Message
-                      </label>
-                      <textarea
-                        id="message"
-                        type="text"
-                        name="review"
-                        placeholder="Add Review"
-                        className="block w-full p-2 rounded autoexpand focus:outline-none focus:ring focus:ring-opacity-25 focus:ring-violet-400 dark:bg-gray-800"
-                      ></textarea>
-                    </div>
-                    <div>
-                      <button
-                        type="submit"
-                        className="w-full px-4 py-2 font-bold rounded shadow focus:outline-none focus:ring hover:ring focus:ring-opacity-50 dark:bg-violet-400 focus:ring-violet-400 hover:ring-violet-400 dark:text-gray-900"
-                      >
-                        Send
-                      </button>
-                    </div>
-                  </form>
-                </section>
+                <Link to={`/addreview/${_id}`}>Add Review</Link>
               </>
             ) : (
               <Link to="/login">Please Login</Link>
