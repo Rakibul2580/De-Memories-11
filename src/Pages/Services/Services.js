@@ -13,7 +13,7 @@ const Services = () => {
           <ServiceCard key={service._id} service={service}></ServiceCard>
         ))}
       </div>
-      <PhotoProvider>
+      {/* <PhotoProvider>
         <PhotoView
           className="w-full"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBkqkOkb9_9iDex4-ptTAblZyLYEAx1HpK4g&usqp=CAU"
@@ -23,7 +23,7 @@ const Services = () => {
             alt=""
           />
         </PhotoView>
-      </PhotoProvider>
+      </PhotoProvider> */}
     </div>
   );
 };

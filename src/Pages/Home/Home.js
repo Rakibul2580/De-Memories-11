@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Banner from "../Shared/Banner/Banner";
 import HomeCard from "./HomeCard/HomeCard";
 
@@ -17,13 +18,19 @@ const Home = () => {
       .catch((error) => console.error(error));
   }, []);
 
+  console.log(services);
   return (
     <div>
       <Banner data={bannerData}></Banner>
-      <div className="mx-11 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {services?.map((service) => (
           <HomeCard key={service._id} service={service}></HomeCard>
         ))}
+      </div>
+      <div className="text-center">
+        <Link to="/services" className="btn btn-warning">
+          See All
+        </Link>
       </div>
     </div>
   );

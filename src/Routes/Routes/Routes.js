@@ -3,9 +3,11 @@ import Main from "../../LayOut/Main";
 import Details from "../../Pages/Details/Details";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
+import MyReview from "../../Pages/MyReview/MyReview";
 import Register from "../../Pages/Register/Register";
 import Review from "../../Pages/Review/Review";
 import Services from "../../Pages/Services/Services";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const routes = createBrowserRouter([
   {
@@ -26,9 +28,23 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/addreview/:id",
-        element: <Review />,
+        element: (
+          <PrivateRoute>
+            <Review />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/service/${params.id}`),
+      },
+      {
+        path: "/myreview/:email",
+        element: (
+          <PrivateRoute>
+            <MyReview />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/myreviews/${params.email}`),
       },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },

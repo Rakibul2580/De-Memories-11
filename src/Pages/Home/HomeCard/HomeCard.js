@@ -1,7 +1,7 @@
 import React from "react";
 
 const HomeCard = ({ service }) => {
-  const { title, details, picture } = service;
+  const { title, details, picture, price } = service;
   return (
     <div className="max-w-xs rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
       <img
@@ -13,6 +13,7 @@ const HomeCard = ({ service }) => {
         <div className="space-y-2">
           <h2 className="text-3xl font-semibold tracking-wide">{title}</h2>
           <p className="dark:text-gray-100">{details.slice(0, 100)}...</p>
+          <p className="dark:text-red-400">Price : {price}</p>
         </div>
         <button
           type="button"

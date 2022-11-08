@@ -13,6 +13,11 @@ const Header = () => {
               Log Out
             </button>
           </li>
+          <li>
+            <Link to={`/myreview/${user?.email}`} className="btn btn-primary">
+              MyReview
+            </Link>
+          </li>
         </>
       ) : (
         <>

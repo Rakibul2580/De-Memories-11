@@ -14,7 +14,6 @@ const Details = () => {
       .then((data) => setReviews(data))
       .catch((error) => console.log(error));
   }, []);
-  console.log(reviews);
   return (
     <div>
       <div className="p-5 mx-auto sm:p-10 md:p-16  dark:text-gray-100">
@@ -41,16 +40,10 @@ const Details = () => {
       <div>
         <section className="m-4 md:m-8 dark:bg-gray-800 dark:text-gray-100">
           <div className="container mx-auto p-4 my-6 space-y-2 text-center">
-            {user?.email ? (
-              <>
-                <Link to={`/addreview/${_id}`}>Add Review</Link>
-              </>
-            ) : (
-              <Link to="/login">Please Login</Link>
-            )}
+            <Link to={`/addreview/${_id}`}>Add Review</Link>
           </div>
           {reviews?.map((review) => (
-            <div>
+            <div key={review?._id}>
               <div className="max-w-md p-6 overflow-hidden rounded-lg shadow dark:bg-gray-900 dark:text-gray-100">
                 <article>
                   <h2 className="text-xl font-bold">{review?.title}</h2>
