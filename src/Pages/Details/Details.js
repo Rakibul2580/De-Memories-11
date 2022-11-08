@@ -14,6 +14,7 @@ const Details = () => {
       .then((data) => setReviews(data))
       .catch((error) => console.log(error));
   }, []);
+  console.log(reviews[0]);
   return (
     <div>
       <div className="p-5 mx-auto sm:p-10 md:p-16  dark:text-gray-100">
@@ -42,34 +43,65 @@ const Details = () => {
           <div className="container mx-auto p-4 my-6 space-y-2 text-center">
             <Link to={`/addreview/${_id}`}>Add Review</Link>
           </div>
-          {reviews?.map((review) => (
-            <div key={review?._id}>
-              <div className="max-w-md p-6 overflow-hidden rounded-lg shadow dark:bg-gray-900 dark:text-gray-100">
-                <article>
-                  <h2 className="text-xl font-bold">{review?.title}</h2>
-                  <p className="mt-4 dark:text-gray-400">{review?.review}</p>
-                  <div className="flex items-center mt-8 space-x-4">
-                    <img
-                      src={review?.photoURL}
-                      alt=""
-                      className="w-10 h-10 rounded-full dark:bg-gray-500"
-                    />
-                    <div>
-                      <h3 className="text-sm font-medium">
-                        {review?.displayName}
-                      </h3>
-                      <time
-                        dateTime="2021-02-18"
-                        className="text-sm dark:text-gray-400"
+
+          <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+            <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+              <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+                <span className="relative inline-block">
+                  <svg
+                    viewBox="0 0 52 24"
+                    fill="currentColor"
+                    className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
+                  >
+                    <defs>
+                      <pattern
+                        id="d9d7687a-355f-4502-8ec4-7945db034688"
+                        x="0"
+                        y="0"
+                        width=".135"
+                        height=".30"
                       >
-                        Feb 18th 2021
-                      </time>
-                    </div>
-                  </div>
-                </article>
-              </div>
+                        <circle cx="1" cy="1" r=".7" />
+                      </pattern>
+                    </defs>
+                    <rect
+                      fill="url(#d9d7687a-355f-4502-8ec4-7945db034688)"
+                      width="52"
+                      height="24"
+                    />
+                  </svg>
+                  <span className="relative">The</span>
+                </span>{" "}
+                quick, brown fox jumps
+              </h2>
             </div>
-          ))}
+            <div className="grid gap-5 mb-8 md:grid-cols-2 lg:grid-cols-3">
+              {reviews?.map((review) => (
+                <div
+                  key={review?._id}
+                  className="p-5 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2"
+                >
+                  <div className="flex items-center justify-between  h-12 mb-4 rounded-full ">
+                    <img
+                      src={picture}
+                      className="w-16 h-16 rounded-full"
+                      alt=""
+                    />
+                    <ul className="flex space-x-4">
+                      <li>S</li>
+                      <li>S</li>
+                      <li>S</li>
+                      <li>S</li>
+                    </ul>
+                  </div>
+                  <h6 className="mb-2 font-semibold leading-5">
+                    {review?.displayName}
+                  </h6>
+                  <p className="text-sm text-gray-900">{review?.review}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
       </div>
     </div>
