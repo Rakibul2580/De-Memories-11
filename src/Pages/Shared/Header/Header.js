@@ -9,14 +9,12 @@ const Header = () => {
       {user?.uid ? (
         <>
           <li>
-            <button onClick={logOut} className="btn btn-primary">
-              Log Out
-            </button>
+            <Link to={`/myreview/${user?.email}`}>MyReview</Link>
           </li>
           <li>
-            <Link to={`/myreview/${user?.email}`} className="btn btn-primary">
-              MyReview
-            </Link>
+            <button onClick={logOut} className="btn btn-warning">
+              Log Out
+            </button>
           </li>
         </>
       ) : (
