@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useTitle from "../../hooke/useTitle";
@@ -33,7 +34,7 @@ const AddService = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        navigate("/");
+        toast.success("Add Service Success");
         form.reset();
       })
       .catch((error) => console.log(error));

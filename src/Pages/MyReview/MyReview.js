@@ -11,7 +11,11 @@ const MyReview = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myreviews/${user?.email}`)
+    fetch(`http://localhost:5000/myreviews/${user?.email}`, {
+      headers: {
+        authorization: `${localStorage.getItem("Token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((error) => console.log(error));
@@ -82,7 +86,7 @@ const MyReview = () => {
         </>
       ) : (
         <>
-          <h1 className="text-5xl text-yellow-500">test</h1>
+          <h1 className="text-5xl text-yellow-500 my-10 text-center">test</h1>
         </>
       )}
     </div>

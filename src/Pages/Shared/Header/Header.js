@@ -9,6 +9,9 @@ const Header = () => {
       {user?.uid ? (
         <>
           <li>
+            <NavLink to="/addservice">Add Service</NavLink>
+          </li>
+          <li>
             <Link to={`/myreview/${user?.email}`}>MyReview</Link>
           </li>
           <li>
@@ -36,9 +39,6 @@ const Header = () => {
       </li>
       <li>
         <NavLink to="/services">Services</NavLink>
-      </li>
-      <li>
-        <NavLink to="/addservice">Add Service</NavLink>
       </li>
       <li>
         <NavLink to="/blog">Blog</NavLink>
