@@ -1,10 +1,11 @@
 import React from "react";
-import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
 import { useLoaderData } from "react-router-dom";
+import useTitle from "../../hooke/useTitle";
 import ServiceCard from "./ServiceCard/ServiceCard";
 
 const Services = () => {
+  useTitle("Services");
   const services = useLoaderData();
   return (
     <div className="flex justify-center">

@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast, { ToastBar } from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useTitle from "../../hooke/useTitle";
 
 const MyReview = () => {
+  useTitle("MyReview");
   const [reviews, setReviews] = useState([]);
   const [render, setRender] = useState(true);
   const { user } = useContext(AuthContext);

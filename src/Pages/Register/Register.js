@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useTitle from "../../hooke/useTitle";
 import registerImg from "./112454-form-registration.gif";
 
 const Register = () => {
+  useTitle("Register");
   const { signUp, signInWithGoogle, updatePro } = useContext(AuthContext);
   const navigate = useNavigate();
 

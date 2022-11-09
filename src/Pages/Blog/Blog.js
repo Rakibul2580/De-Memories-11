@@ -1,6 +1,8 @@
 import React from "react";
+import useTitle from "../../hooke/useTitle";
 
 const Blog = () => {
+  useTitle("Blog");
   return (
     <section className="dark:bg-gray-800 dark:text-gray-100">
       <div className="container max-w-5xl px-4 py-12 mx-auto">

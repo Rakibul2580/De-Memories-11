@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useTitle from "../../hooke/useTitle";
 import Banner from "./Banner/Banner";
 import HomeCard from "./HomeCard/HomeCard";
 
 const Home = () => {
+  useTitle("Home");
   const [services, setServices] = useState([]);
 
   useEffect(() => {

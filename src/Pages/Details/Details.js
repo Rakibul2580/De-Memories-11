@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { FaStar } from "react-icons/fa";
+import useTitle from "../../hooke/useTitle";
 
 const Details = () => {
+  useTitle("Details");
   const { user } = useContext(AuthContext);
   const service = useLoaderData();
   const { details, picture, price, title, _id } = service;
@@ -12,7 +14,7 @@ const Details = () => {
   useEffect(() => {
     fetch(`http://localhost:5000/reviews/${title}`)
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => setReviews(data))
       .catch((error) => console.log(error));
   }, []);
   return (

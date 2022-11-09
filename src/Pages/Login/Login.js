@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useTitle from "../../hooke/useTitle";
 import loginImg from "./70640-floating-magic-link-login.gif";
 
 const Login = () => {
+  useTitle("Login");
   // add auth contexts function
   const { signIn, signInWithGoogle } = useContext(AuthContext);
   const location = useLocation();
@@ -21,9 +23,27 @@ const Login = () => {
     setError("");
     signIn(email, password)
       .then((result) => {
+        const user = result.user;
         form.reset();
         navigate(from, { replace: true });
         form.reset();
+        const currentUser = {
+          email: user.email,
+        };
+        // get jwt token
+        fetch("https://genius-car-server-khaki-three.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("Token", data.token);
+          })
+          .catch((error) => console.log(error));
       })
       .catch((error) => {
         setError(error.message);
@@ -35,7 +55,24 @@ const Login = () => {
     setError("");
     signInWithGoogle()
       .then((result) => {
+        const user = result.user;
+        const currentUser = {
+          email: user.email,
+        };
         navigate(from, { replace: true });
+        fetch("https://genius-car-server-khaki-three.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("Token", data.token);
+          })
+          .catch((error) => console.log(error));
       })
       .catch((error) => setError(error.message));
   };
