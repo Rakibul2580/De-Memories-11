@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import { FaStar } from "react-icons/fa";
 
 const Details = () => {
   const { user } = useContext(AuthContext);
@@ -11,7 +12,7 @@ const Details = () => {
   useEffect(() => {
     fetch(`http://localhost:5000/reviews/${title}`)
       .then((res) => res.json())
-      .then((data) => setReviews(data))
+      .then((data) => console.log(data))
       .catch((error) => console.log(error));
   }, []);
   return (
@@ -86,15 +87,16 @@ const Details = () => {
                       className="w-16 h-16 rounded-full"
                       alt=""
                     />
-                    <ul className="flex space-x-4">
-                      <li>S</li>
-                      <li>S</li>
-                      <li>S</li>
-                      <li>S</li>
+                    <ul className="flex space-x-4 text-yellow-400">
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
                     </ul>
                   </div>
-                  <h6 className="mb-2 font-semibold leading-5">
-                    {review?.displayName}
+                  <h6 className="mb-2 font-semibold leading-5 text-black">
+                    {review?.userName}
                   </h6>
                   <p className="text-sm text-gray-900">{review?.review}</p>
                 </div>
