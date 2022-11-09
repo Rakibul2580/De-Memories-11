@@ -47,7 +47,7 @@ const Header = () => {
   );
   return (
     <div className="">
-      <div className="navbar bg-base-100 rounded-md bg-opacity-90 z-10">
+      <div className="navbar bg-pink-200 fixed top-0 left-0 right-0 bg-base-100 rounded-md bg-opacity-60 z-20">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost md:hidden">
@@ -68,7 +68,7 @@ const Header = () => {
             </label>
             <ul
               tabIndex={0}
-              className=" menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              className=" menu menu-compact dropdown-content font-medium mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               {menuList}
               {rightMenu}
@@ -77,10 +77,10 @@ const Header = () => {
           <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
         </div>
         <div className="navbar-center hidden md:flex">
-          <ul className="menu menu-horizontal p-0">{menuList}</ul>
+          <ul className="menu menu-horizontal p-0 font-medium">{menuList}</ul>
         </div>
         <div className="navbar-end hidden md:flex">
-          <ul className="menu menu-horizontal p-0">{rightMenu}</ul>
+          <ul className="menu menu-horizontal p-0 font-medium">{rightMenu}</ul>
         </div>
       </div>
     </div>

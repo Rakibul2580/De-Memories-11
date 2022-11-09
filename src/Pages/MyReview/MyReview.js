@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast, { ToastBar } from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useTitle from "../../hooke/useTitle";
 
@@ -10,7 +11,7 @@ const MyReview = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myreviews/${user.email}`)
+    fetch(`http://localhost:5000/myreviews/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((error) => console.log(error));
@@ -27,6 +28,7 @@ const MyReview = () => {
       })
       .catch((error) => console.log(error));
   };
+
   return (
     <div>
       {reviews[0]?._id ? (
@@ -36,46 +38,41 @@ const MyReview = () => {
               {reviews?.map((review) => (
                 <div
                   key={review?._id}
-                  className="relative p-px overflow-hidden transition duration-300 transform border rounded shadow-sm hover:scale-105 group hover:shadow-xl"
+                  className="relative border-2 p-px overflow-hidden transition duration-300 transform border rounded shadow-sm hover:scale-105 group hover:shadow-xl"
                 >
-                  <div className="relative flex flex-col h-full p-5 bg-white rounded-sm lg:items-center lg:flex-row">
+                  <div className="relative flex flex-col h-full p-4 bg-white rounded-sm lg:items-center lg:flex-row">
                     <div className="mb-6 mr-6 lg:mb-0">
-                      <div className="flex items-center justify-center w-24 h-24 rounded-full  ">
-                        {/* <svg
-                      className="w-16 h-16 text-deep-purple-accent-400 lg:w-20 lg:h-20"
-                      stroke="currentColor"
-                      viewBox="0 0 52 52"
-                    >
-                      <polygon
-                        strokeWidth="3"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        fill="none"
-                        points="29 13 14 29 25 29 23 39 38 23 27 23"
-                      />
-                    </svg> */}
+                      <div className="flex items-center justify-center w-52 h-auto rounded-full  ">
                         <img
                           src={review?.serviceImg}
-                          className="w-full h-full lg:w-24 lg:h-24 rounded-md"
+                          className="w-full h-full lg:w-full lg:h-full rounded-md"
                           alt=""
                         />
                       </div>
                     </div>
-                    <div className="flex flex-col justify-between flex-grow">
+                    <div className="flex  flex-col justify-between flex-grow">
                       <div>
-                        <h6 className="mb-2 font-semibold leading-5">
+                        <h6 className="mb-2 font-bold text-xl leading-5">
                           {review?.title}
                         </h6>
-                        <p className="mb-2 text-sm text-gray-900">
+                        <p className="my-3 text-md font-medium text-gray-900">
                           {review?.review}
                         </p>
                       </div>
-                      <button
-                        onClick={() => handleDelete(review?._id)}
-                        className="inline-flex items-center text-sm font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-                      >
-                        Learn more
-                      </button>
+                      <div className="space-x-2">
+                        <button
+                          onClick={() => handleDelete(review?._id)}
+                          className="btn btn-warning"
+                        >
+                          Delete
+                        </button>
+                        <Link
+                          to={`/updateReview/${review?._id}`}
+                          className="btn btn-primary"
+                        >
+                          Update
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>

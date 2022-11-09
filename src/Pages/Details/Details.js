@@ -19,20 +19,20 @@ const Details = () => {
   }, []);
   return (
     <div>
-      <div className="p-5 mx-auto sm:p-10 md:p-16  dark:text-gray-100">
+      <div className="p-5 mx-auto sm:p-10 md:p-16  dark:text-gray-900">
         <div className="flex flex-col max-w-3xl mx-auto overflow-hidden rounded">
           <img
             src={picture}
             alt=""
-            className="saturate-200 w-full h-60 sm:h-96 dark:bg-gray-500 rounded-md"
+            className="saturate-200 w-full h-60 sm:h-96 dark:bg-gray-200 rounded-md"
           />
-          <div className="z-10 rounded-md p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md dark:bg-gray-900">
+          <div className="z-10 rounded-md p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md dark:bg-gray-50">
             <div className="space-y-2">
               <h1 className="inline-block text-2xl font-semibold sm:text-3xl">
                 {title}
               </h1>
             </div>
-            <div className="dark:text-gray-100">
+            <div className="dark:text-gray-900">
               <p>{details}</p>
               <p className="mt-5">Price: {price}</p>
             </div>
@@ -41,9 +41,14 @@ const Details = () => {
       </div>
 
       <div>
-        <section className="m-4 md:m-8 dark:bg-gray-800 dark:text-gray-100">
+        <section className="m-4 md:m-8 dark:bg-gray-100 dark:text-gray-800">
           <div className="container mx-auto p-4 my-6 space-y-2 text-center">
-            <Link to={`/addreview/${_id}`}>Add Review</Link>
+            <Link
+              to={`/addreview/${_id}`}
+              className="btn btn-warning rounded-md"
+            >
+              Add Review
+            </Link>
           </div>
 
           <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -81,7 +86,7 @@ const Details = () => {
               {reviews?.map((review) => (
                 <div
                   key={review?._id}
-                  className="p-5 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2"
+                  className="p-5 border-2 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2"
                 >
                   <div className="flex items-center justify-between  h-12 mb-4 rounded-full ">
                     <img
@@ -89,7 +94,7 @@ const Details = () => {
                       className="w-16 h-16 rounded-full"
                       alt=""
                     />
-                    <ul className="flex space-x-4 text-yellow-400">
+                    <ul className="flex space-x-1 text-yellow-400">
                       <FaStar />
                       <FaStar />
                       <FaStar />
@@ -97,10 +102,12 @@ const Details = () => {
                       <FaStar />
                     </ul>
                   </div>
-                  <h6 className="mb-2 font-semibold leading-5 text-black">
+                  <h6 className="mb-2 leading-5 text-xl font-bold text-black">
                     {review?.userName}
                   </h6>
-                  <p className="text-sm text-gray-900">{review?.review}</p>
+                  <p className="text-sm text-lg font-normal text-gray-900">
+                    {review?.review}
+                  </p>
                 </div>
               ))}
             </div>

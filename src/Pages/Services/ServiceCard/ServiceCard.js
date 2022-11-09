@@ -3,27 +3,23 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
-  const { title, details, picture, _id } = service;
+  const { title, price, details, picture, _id } = service;
   return (
-    <div className="max-w-xs rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
+    <div className="max-w-md rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
       <PhotoProvider>
-        <PhotoView className="w-full" src={picture}>
+        <PhotoView className="" src={picture}>
           <img
             src={picture}
             alt=""
-            className="saturate-200 object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
+            className="saturate-200 object-cover object-center w-full rounded-t-md h-96 dark:bg-gray-500"
           />
         </PhotoView>
       </PhotoProvider>
-      {/* <img
-        src={picture}
-        alt=""
-        className="saturate-200 object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500"
-      /> */}
       <div className="flex flex-col justify-between p-6 space-y-8">
         <div className="space-y-2">
           <h2 className="text-3xl font-semibold tracking-wide">{title}</h2>
           <p className="dark:text-gray-100">{details.slice(0, 100)}...</p>
+          <p className=" text-red-300 text-xl font-medium">Price: {price}</p>
         </div>
         <Link
           to={`/service/${_id}`}

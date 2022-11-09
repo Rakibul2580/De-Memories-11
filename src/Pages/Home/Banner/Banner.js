@@ -9,7 +9,7 @@ const Banner = () => {
       "Learning arbitrary coding concepts can get boring after some time.To keep your motivation up, think of all the things you ve alwayswanted to create.",
   };
   return (
-    <div data-aos="fade-down-right" className="dark:text-gray-100">
+    <div data-aos="fade-down-right" className="dark:text-gray-100 mt-10">
       <div className="flex flex-col mx-auto overflow-hidden">
         <div
           style={{ backgroundImage: `url('${bannerData?.img}')` }}
@@ -24,7 +24,7 @@ const Banner = () => {
             </p>
             <div className="flex flex-wrap justify-center">
               <Link
-                to="/courses"
+                to="/services"
                 className="bg-slate-400 px-8 py-3 m-2 text-lg font-semibold rounded dark:text-slate-900  duration-300 hover:bg-pink-400 hover:text-white"
               >
                 Get started

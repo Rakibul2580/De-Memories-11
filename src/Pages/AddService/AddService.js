@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useTitle from "../../hooke/useTitle";
 
 const AddService = () => {
   useTitle("AddService");
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleServiceSubmit = (event) => {
     event.preventDefault();
@@ -30,12 +32,15 @@ const AddService = () => {
       body: JSON.stringify(serviceInfo),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        navigate("/");
+        form.reset();
+      })
       .catch((error) => console.log(error));
   };
 
   return (
-    <div className="relative">
+    <div className="relative mt-10">
       <img
         src="https://images.pexels.com/photos/3747463/pexels-photo-3747463.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
         className="absolute inset-0 object-cover w-full h-full"

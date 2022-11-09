@@ -26,7 +26,7 @@ const HomeCard = ({ service }) => {
           to="/services"
           className="inline-flex items-center justify-center w-full h-12 px-6 font-medium bg-teal-400 tracking-wide transition duration-200 rounded shadow-md hover:bg-teal-300"
         >
-          Buy Basic
+          Details
         </Link>
       </div>
     </div>

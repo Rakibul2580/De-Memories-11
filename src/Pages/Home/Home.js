@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useTitle from "../../hooke/useTitle";
 import Banner from "./Banner/Banner";
 import HomeCard from "./HomeCard/HomeCard";
@@ -7,6 +8,7 @@ import HomeCard from "./HomeCard/HomeCard";
 const Home = () => {
   useTitle("Home");
   const [services, setServices] = useState([]);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     fetch("http://localhost:5000")
@@ -14,6 +16,13 @@ const Home = () => {
       .then((data) => setServices(data))
       .catch((error) => console.error(error));
   }, []);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/myservice/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+  }, [user?.email]);
 
   return (
     <div>
@@ -56,7 +65,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="text-center">
+      <div className="text-center m-5">
         <Link to="/services" className="btn btn-warning">
           See All
         </Link>
