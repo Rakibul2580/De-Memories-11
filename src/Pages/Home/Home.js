@@ -11,14 +11,14 @@ const Home = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("http://localhost:5000")
+    fetch("https://photo-server.vercel.app")
       .then((res) => res.json())
       .then((data) => setServices(data))
       .catch((error) => console.error(error));
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myservice/${user?.email}`)
+    fetch(`https://photo-server.vercel.app/myservice/${user?.email}`)
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((error) => console.log(error));

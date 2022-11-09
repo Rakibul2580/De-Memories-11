@@ -11,7 +11,7 @@ const MyReview = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/myreviews/${user?.email}`, {
+    fetch(`https://photo-server.vercel.app/myreviews/${user?.email}`, {
       headers: {
         authorization: `${localStorage.getItem("Token")}`,
       },
@@ -22,7 +22,7 @@ const MyReview = () => {
   }, [user?.email, render]);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/reviewdelete/${id}`, {
+    fetch(`https://photo-server.vercel.app/reviewdelete/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

@@ -10,7 +10,7 @@ const UpdateReview = () => {
     event.preventDefault();
     const review = event.target.update.value;
 
-    fetch(`http://localhost:5000/update/${data[0]?._id}`, {
+    fetch(`https://photo-server.vercel.app/update/${data[0]?._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
