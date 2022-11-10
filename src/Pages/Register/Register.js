@@ -36,6 +36,22 @@ const Register = () => {
     setError("");
     signInWithGoogle()
       .then((result) => {
+        const user = result.user;
+        const currentUser = {
+          email: user.email,
+        };
+        fetch("https://genius-car-server-khaki-three.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("Token", data.token);
+          })
+          .catch((error) => console.log(error));
         navigate("/");
       })
       .catch((error) => {
