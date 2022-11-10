@@ -6,7 +6,7 @@ const Banner = () => {
     img: "https://i.ibb.co/nrcv1xw/01-Active-Box.jpg",
     title: "Photography is our passion It's Always Great!",
     details:
-      "Learning arbitrary coding concepts can get boring after some time.To keep your motivation up, think of all the things you ve alwayswanted to create.",
+      "What i like about photographs is that they capture a moment that’s gone forever, impossible to reproduce.",
   };
   return (
     <div data-aos="fade-down-right" className="dark:text-gray-100 mt-10">
