@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Banner = () => {
   const bannerData = {
     img: "https://i.ibb.co/nrcv1xw/01-Active-Box.jpg",
-    title: "best music for coding developers",
+    title: "Photography is our passion It's Always Great!",
     details:
       "Learning arbitrary coding concepts can get boring after some time.To keep your motivation up, think of all the things you ve alwayswanted to create.",
   };

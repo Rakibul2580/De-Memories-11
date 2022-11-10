@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { FaStar } from "react-icons/fa";
 import useTitle from "../../hooke/useTitle";
 
 const Details = () => {
   useTitle("Details");
-  const { user } = useContext(AuthContext);
   const service = useLoaderData();
   const { details, picture, price, title, _id } = service;
   const [reviews, setReviews] = useState([]);
@@ -34,7 +32,7 @@ const Details = () => {
             </div>
             <div className="dark:text-gray-900">
               <p>{details}</p>
-              <p className="mt-5">Price: {price}</p>
+              <p className="mt-5 text-xl text-red-400">Price: {price}</p>
             </div>
           </div>
         </div>
@@ -86,7 +84,7 @@ const Details = () => {
               {reviews?.map((review) => (
                 <div
                   key={review?._id}
-                  className="p-5 border-2 duration-300 transform bg-white border rounded shadow-sm hover:-translate-y-2"
+                  className="p-5 border-2 duration-300 transform bg-white rounded shadow-sm hover:-translate-y-2"
                 >
                   <div className="flex items-center justify-between  h-12 mb-4 rounded-full ">
                     <img
@@ -105,7 +103,7 @@ const Details = () => {
                   <h6 className="mb-2 leading-5 text-xl font-bold text-black">
                     {review?.userName}
                   </h6>
-                  <p className="text-sm text-lg font-normal text-gray-900">
+                  <p className="text-sm font-normal text-gray-900">
                     {review?.review}
                   </p>
                 </div>

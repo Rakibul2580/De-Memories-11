@@ -27,7 +27,7 @@ const ServiceCard = ({ service }) => {
           to={`/service/${_id}`}
           className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md dark:bg-violet-400 dark:text-gray-900"
         >
-          Read more
+          Vew Details
         </Link>
       </div>
     </div>

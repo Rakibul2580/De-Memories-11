@@ -89,7 +89,9 @@ const MyReview = () => {
         </>
       ) : (
         <>
-          <h1 className="text-5xl text-yellow-500 my-10 text-center">test</h1>
+          <h1 className="text-5xl text-yellow-500 my-10 text-center">
+            No Review Were Added
+          </h1>
         </>
       )}
     </div>

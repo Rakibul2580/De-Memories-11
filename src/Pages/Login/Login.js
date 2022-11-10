@@ -19,7 +19,6 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
     setError("");
     signIn(email, password)
       .then((result) => {
@@ -40,7 +39,6 @@ const Login = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             localStorage.setItem("Token", data.token);
           })
           .catch((error) => console.log(error));
@@ -69,7 +67,6 @@ const Login = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             localStorage.setItem("Token", data.token);
           })
           .catch((error) => console.log(error));

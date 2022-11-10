@@ -26,7 +26,6 @@ const Review = () => {
       userPhoto,
     };
     fetch("https://photo-server-rakibul2580.vercel.app/review", {
-      // https://photo-server-rakibul2580.vercel.app
       method: "POST",
       headers: {
         "content-type": "application/json",

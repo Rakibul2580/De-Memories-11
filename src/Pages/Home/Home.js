@@ -4,6 +4,8 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useTitle from "../../hooke/useTitle";
 import Banner from "./Banner/Banner";
 import HomeCard from "./HomeCard/HomeCard";
+import HomeHero from "./HomeHero/HomeHero";
+import Rating from "./Rating/Rating";
 
 const Home = () => {
   useTitle("Home");
@@ -55,12 +57,13 @@ const Home = () => {
           ))}
         </div>
       </div>
-
       <div className="text-center m-5">
         <Link to="/services" className="btn btn-warning">
           See All
         </Link>
       </div>
+      <HomeHero />
+      <Rating />
     </div>
   );
 };
