@@ -16,7 +16,6 @@ const Details = () => {
       .then((data) => setReviews(data))
       .catch((error) => console.log(error));
   }, []);
-  console.log(reviews[0]);
   return (
     <div>
       <div className="p-5 mx-auto sm:p-10 md:p-16  dark:text-gray-900">
