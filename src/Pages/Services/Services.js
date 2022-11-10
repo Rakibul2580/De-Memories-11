@@ -7,6 +7,11 @@ import ServiceCard from "./ServiceCard/ServiceCard";
 const Services = () => {
   useTitle("Services");
   const services = useLoaderData();
+  if (!services) {
+    return (
+      <h1 className="text-yellow-300 text-2xl text-center">Loading ...</h1>
+    );
+  }
   return (
     <div className="flex justify-center my-16">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

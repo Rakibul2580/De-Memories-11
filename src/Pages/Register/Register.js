@@ -8,13 +8,15 @@ const Register = () => {
   useTitle("Register");
   const { signUp, signInWithGoogle, updatePro } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [x, setX] = useState(true);
 
   const [error, setError] = useState("");
 
   // register with email and password
   const handleLogin = (event) => {
-    setError("");
     event.preventDefault();
+    setError("");
+    setX(false);
     const form = event.target;
     const name = form.name.value;
     const photo = form.photoUrl.value;
@@ -22,6 +24,7 @@ const Register = () => {
     const password = form.password.value;
     signUp(email, password)
       .then((result) => {
+        setX(true);
         updatePro(name, photo);
         form.reset();
         navigate("/");
@@ -34,6 +37,7 @@ const Register = () => {
   // register with google account
   const handleGoogle = () => {
     setError("");
+    setX(false);
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
@@ -49,6 +53,7 @@ const Register = () => {
         })
           .then((res) => res.json())
           .then((data) => {
+            setX(true);
             localStorage.setItem("Token", data.token);
           })
           .catch((error) => console.log(error));
@@ -58,6 +63,10 @@ const Register = () => {
         setError(error.message);
       });
   };
+
+  if (!x) {
+    return <h1>Loading..</h1>;
+  }
 
   return (
     <section className="py-6 dark:bg-white dark:text-gray-900">
