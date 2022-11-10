@@ -15,13 +15,12 @@ const MyReview = () => {
       `https://photo-server-rakibul2580.vercel.app/myreviews/${user?.email}`,
       {
         headers: {
-          authorization: `${localStorage.getItem("Token")}`,
+          authorization: `Bearer ${localStorage.getItem("Token")}`,
         },
       }
     )
       .then((res) => {
         res.json();
-        console.log(res);
       })
       .then((data) => setReviews(data))
       .catch((error) => console.log(error));
