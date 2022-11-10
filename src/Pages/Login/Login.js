@@ -13,9 +13,16 @@ const Login = () => {
   const [error, setError] = useState("");
   const from = location?.state?.from?.pathname || "/";
 
+  const [x, setX] = useState(true);
+
+  if (!x) {
+    return <h1>Loding..</h1>;
+  }
+
   //login with email and password function
   const handleLogin = (e) => {
     e.preventDefault();
+    setX(false);
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
@@ -24,6 +31,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         form.reset();
+        setX(true);
         navigate(from, { replace: true });
         form.reset();
         const currentUser = {
@@ -48,15 +56,21 @@ const Login = () => {
       });
   };
 
+  if (!x) {
+    return <h1>Loading..</h1>;
+  }
+
   // login with google function
   const handleGoogle = () => {
     setError("");
+    setX(false);
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
         const currentUser = {
           email: user.email,
         };
+        setX(true);
         navigate(from, { replace: true });
         fetch("https://genius-car-server-khaki-three.vercel.app/jwt", {
           method: "POST",
