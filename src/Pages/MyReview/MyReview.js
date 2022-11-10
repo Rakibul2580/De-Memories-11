@@ -11,18 +11,21 @@ const MyReview = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`https://photo-server.vercel.app/myreviews/${user?.email}`, {
-      headers: {
-        authorization: `${localStorage.getItem("Token")}`,
-      },
-    })
+    fetch(
+      `https://photo-server-rakibul2580.vercel.app/myreviews/${user?.email}`,
+      {
+        headers: {
+          authorization: `${localStorage.getItem("Token")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((error) => console.log(error));
   }, [user?.email, render]);
 
   const handleDelete = (id) => {
-    fetch(`https://photo-server.vercel.app/reviewdelete/${id}`, {
+    fetch(`https://photo-server-rakibul2580.vercel.app/reviewdelete/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

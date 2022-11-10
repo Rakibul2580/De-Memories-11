@@ -74,7 +74,12 @@ const Header = () => {
               {rightMenu}
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+          <Link
+            to="/"
+            className="btn btn-ghost normal-case font-bold text-xl text-yellow-400"
+          >
+            Photo<span className="text-emerald-400">Shot</span>
+          </Link>
         </div>
         <div className="navbar-center hidden md:flex">
           <ul className="menu menu-horizontal p-0 font-medium">{menuList}</ul>

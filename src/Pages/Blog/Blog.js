@@ -4,7 +4,7 @@ import useTitle from "../../hooke/useTitle";
 const Blog = () => {
   useTitle("Blog");
   return (
-    <section className="dark:bg-gray-800 dark:text-gray-100">
+    <section className="dark:bg-gray-800 mt-10 dark:text-gray-100">
       <div className="container max-w-5xl px-4 py-12 mx-auto">
         <div className="grid gap-4 mx-4 sm:grid-cols-12">
           <div className="relative col-span-12 px-4 space-y-6 sm:col-span-9">

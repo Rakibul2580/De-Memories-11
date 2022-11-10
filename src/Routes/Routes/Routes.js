@@ -3,6 +3,7 @@ import Main from "../../LayOut/Main";
 import AddService from "../../Pages/AddService/AddService";
 import Blog from "../../Pages/Blog/Blog";
 import Details from "../../Pages/Details/Details";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import MyReview from "../../Pages/MyReview/MyReview";
@@ -16,18 +17,22 @@ export const routes = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       { path: "/", element: <Home /> },
       {
         path: "/services",
         element: <Services />,
-        loader: () => fetch("https://photo-server.vercel.app/services"),
+        loader: () =>
+          fetch("https://photo-server-rakibul2580.vercel.app/services"),
       },
       {
         path: "/service/:id",
         element: <Details />,
         loader: ({ params }) =>
-          fetch(`https://photo-server.vercel.app/service/${params.id}`),
+          fetch(
+            `https://photo-server-rakibul2580.vercel.app/service/${params.id}`
+          ),
       },
       {
         path: "/addreview/:id",
@@ -37,7 +42,9 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://photo-server.vercel.app/service/${params.id}`),
+          fetch(
+            `https://photo-server-rakibul2580.vercel.app/service/${params.id}`
+          ),
       },
       {
         path: "/myreview/:email",
@@ -47,14 +54,18 @@ export const routes = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`https://photo-server.vercel.app/myreviews/${params.email}`),
+          fetch(
+            `https://photo-server-rakibul2580.vercel.app/myreviews/${params.email}`
+          ),
       },
       { path: "/login", element: <Login /> },
       {
         path: "/updateReview/:id",
         element: <UpdateReview />,
         loader: ({ params }) =>
-          fetch(`https://photo-server.vercel.app/review/${params.id}`),
+          fetch(
+            `https://photo-server-rakibul2580.vercel.app/review/${params.id}`
+          ),
       },
       { path: "/blog", element: <Blog /> },
       { path: "/addservice", element: <AddService /> },

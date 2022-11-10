@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useTitle from "../../hooke/useTitle";
 
 const Review = () => {
+  useTitle("Review");
   const service = useLoaderData();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -23,7 +25,8 @@ const Review = () => {
       userName,
       userPhoto,
     };
-    fetch("https://photo-server.vercel.app/review", {
+    fetch("https://photo-server-rakibul2580.vercel.app/review", {
+      // https://photo-server-rakibul2580.vercel.app
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -35,7 +38,7 @@ const Review = () => {
       .catch((error) => console.log(error));
   };
   return (
-    <section className="p-6 dark:text-gray-100">
+    <section className="p-6 mt-10 mb-52 dark:text-gray-100">
       <form
         onSubmit={handleReview}
         noValidate=""

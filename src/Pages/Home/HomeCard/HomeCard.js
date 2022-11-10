@@ -16,7 +16,7 @@ const HomeCard = ({ service }) => {
         <div>
           <div className="text-xl font-bold">{title}</div>
           <p className="text-sm my-3 text-gray-900">
-            {details.slice(0, 100)} . . . .
+            {details?.length >= 100 ? details.slice(0, 100) : details}
           </p>
           <div className="mt-1 mb-4 text-red-300 mr-1 text-xl font-medium sm:text-2xl">
             Price: ${price}

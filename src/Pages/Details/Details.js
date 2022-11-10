@@ -12,7 +12,7 @@ const Details = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`https://photo-server.vercel.app/reviews/${title}`)
+    fetch(`https://photo-server-rakibul2580.vercel.app/reviews/${title}`)
       .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((error) => console.log(error));
@@ -26,7 +26,7 @@ const Details = () => {
             alt=""
             className="saturate-200 w-full h-60 sm:h-96 dark:bg-gray-200 rounded-md"
           />
-          <div className="z-10 rounded-md p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md dark:bg-gray-50">
+          <div className="z-10 shadow-lg rounded-md p-6 pb-12 m-4 mx-auto -mt-16 space-y-6 lg:max-w-2xl sm:px-10 sm:mx-12 lg:rounded-md dark:bg-gray-50">
             <div className="space-y-2">
               <h1 className="inline-block text-2xl font-semibold sm:text-3xl">
                 {title}
@@ -77,9 +77,9 @@ const Details = () => {
                       height="24"
                     />
                   </svg>
-                  <span className="relative">The</span>
+                  <span className="relative">All</span>
                 </span>{" "}
-                quick, brown fox jumps
+                Reviews
               </h2>
             </div>
             <div className="grid gap-5 mb-8 md:grid-cols-2 lg:grid-cols-3">

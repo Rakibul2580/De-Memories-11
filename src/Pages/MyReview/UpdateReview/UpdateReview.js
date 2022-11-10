@@ -1,7 +1,9 @@
 import React from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import useTitle from "../../../hooke/useTitle";
 
 const UpdateReview = () => {
+  useTitle("UpdateReview");
   const data = useLoaderData();
   const navigate = useNavigate();
   const email = data[0].userEmail;
@@ -10,13 +12,16 @@ const UpdateReview = () => {
     event.preventDefault();
     const review = event.target.update.value;
 
-    fetch(`https://photo-server.vercel.app/update/${data[0]?._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ review }),
-    })
+    fetch(
+      `https://photo-server-rakibul2580.vercel.app/update/${data[0]?._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ review }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => navigate(`/myreview/${email}`))
       .catch((error) => console.log(error));

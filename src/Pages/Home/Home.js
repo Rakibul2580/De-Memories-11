@@ -8,21 +8,13 @@ import HomeCard from "./HomeCard/HomeCard";
 const Home = () => {
   useTitle("Home");
   const [services, setServices] = useState([]);
-  const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch("https://photo-server.vercel.app")
+    fetch("https://photo-server-rakibul2580.vercel.app")
       .then((res) => res.json())
       .then((data) => setServices(data))
       .catch((error) => console.error(error));
   }, []);
-
-  useEffect(() => {
-    fetch(`https://photo-server.vercel.app/myservice/${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
-  }, [user?.email]);
 
   return (
     <div>
@@ -53,9 +45,8 @@ const Home = () => {
                   height="24"
                 />
               </svg>
-              <span className="relative">Choose</span>
+              <span className="relative">Services</span>
             </span>{" "}
-            your way. Advance everyday.
           </h2>
         </div>
         <div className="grid gap-10 row-gap-8  sm:row-gap-10 lg:grid-cols-3">

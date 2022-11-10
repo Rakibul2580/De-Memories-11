@@ -12,20 +12,20 @@ const AddService = () => {
   const handleServiceSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
-    const userName = form.name.value;
+    const details = form.details.value;
     const email = user?.email;
-    const serviceName = form.ServiceName.value;
+    const title = form.ServiceName.value;
     const price = form.price.value;
-    const photo = form.photo.value;
+    const picture = form.photo.value;
     const serviceInfo = {
-      userName,
+      details,
       email,
-      serviceName,
+      title,
       price,
-      photo,
+      picture,
     };
 
-    fetch("https://photo-server.vercel.app/myservice", {
+    fetch("https://photo-server-rakibul2580.vercel.app/myservice", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -70,23 +70,6 @@ const AddService = () => {
                 <form onSubmit={handleServiceSubmit}>
                   <div className="mb-1 sm:mb-2">
                     <label
-                      htmlFor="firstName"
-                      className="inline-block mb-1 font-medium"
-                    >
-                      Name
-                    </label>
-                    <input
-                      placeholder="Your Name"
-                      required
-                      type="text"
-                      className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-                      id="firstName"
-                      name="name"
-                    />
-                  </div>
-
-                  <div className="mb-1 sm:mb-2">
-                    <label
                       htmlFor="ServiceName"
                       className="inline-block mb-1 font-medium"
                     >
@@ -99,6 +82,22 @@ const AddService = () => {
                       className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
                       id="ServiceName"
                       name="ServiceName"
+                    />
+                  </div>
+                  <div className="mb-1 sm:mb-2">
+                    <label
+                      htmlFor="details"
+                      className="inline-block mb-1 font-medium"
+                    >
+                      Service Details
+                    </label>
+                    <input
+                      placeholder="Service Details"
+                      required
+                      type="text"
+                      className="flex-grow w-full h-12 px-4 mb-2 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
+                      id="details"
+                      name="details"
                     />
                   </div>
                   <div className="mb-1 sm:mb-2">
