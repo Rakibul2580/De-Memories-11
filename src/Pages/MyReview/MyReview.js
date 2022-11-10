@@ -19,9 +19,7 @@ const MyReview = () => {
         },
       }
     )
-      .then((res) => {
-        res.json();
-      })
+      .then((res) => res.json())
       .then((data) => setReviews(data))
       .catch((error) => console.log(error));
   }, [user?.email, render]);
@@ -37,7 +35,10 @@ const MyReview = () => {
       })
       .catch((error) => console.log(error));
   };
-  const review = reviews[0];
+  let review = {};
+  if (reviews?.length >= 1) {
+    review = { _id: 1 };
+  }
   return (
     <div>
       {review?._id ? (
