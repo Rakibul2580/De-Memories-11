@@ -78,7 +78,7 @@ const Header = () => {
             to="/"
             className="btn btn-ghost normal-case font-bold text-xl text-yellow-400"
           >
-            De-<span className="text-emerald-400">Memories</span>
+            De<span className="text-emerald-400">Memories</span>
           </Link>
         </div>
         <div className="navbar-center hidden md:flex">

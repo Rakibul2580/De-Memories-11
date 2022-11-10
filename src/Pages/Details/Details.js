@@ -7,6 +7,7 @@ const Details = () => {
   useTitle("Details");
   const service = useLoaderData();
   const { details, picture, price, title, _id } = service;
+  console.log(service);
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
@@ -15,6 +16,7 @@ const Details = () => {
       .then((data) => setReviews(data))
       .catch((error) => console.log(error));
   }, []);
+  console.log(reviews[0]);
   return (
     <div>
       <div className="p-5 mx-auto sm:p-10 md:p-16  dark:text-gray-900">
@@ -88,7 +90,7 @@ const Details = () => {
                 >
                   <div className="flex items-center justify-between  h-12 mb-4 rounded-full ">
                     <img
-                      src={picture}
+                      src={review?.userPhoto}
                       className="w-16 h-16 rounded-full"
                       alt=""
                     />
