@@ -7,7 +7,6 @@ const Details = () => {
   useTitle("Details");
   const service = useLoaderData();
   const { details, picture, price, title, _id } = service;
-  console.log(service);
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
